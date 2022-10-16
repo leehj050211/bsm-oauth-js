@@ -1,0 +1,23 @@
+{
+  "name": "bsm-oauth-js",
+  "version": "1.0.0",
+  "description": "BSM Auth를 JavaScript에서 쉽게 사용할 수 있는 라이브러리",
+  "main": "dist/index.js",
+  "types" : "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leehj050211/bsm-oauth-js.git"
+  },
+  "author": "leehj050211",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leehj050211/bsm-oauth-js/issues"
+  },
+  "homepage": "https://github.com/leehj050211/bsm-oauth-js#readme",
+  "dependencies": {
+    "typescript": "^4.8.4"
+  }
+}
