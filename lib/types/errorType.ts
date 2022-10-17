@@ -1,0 +1,7 @@
+enum ErrorType {
+    AUTH_CODE_NOT_FOUND = 'AUTH_CODE_NOT_FOUND',
+    TOKEN_NOT_FOUND = 'TOKEN_NOT_FOUND',
+    INVALID_CLIENT = 'INVALID_CLIENT'
+}
+
+export default ErrorType;

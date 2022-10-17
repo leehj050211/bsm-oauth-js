@@ -1,12 +1,13 @@
 {
+  "include": [
+    "**/*.ts"
+  ],
   "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
+    "target": "ES2022",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "outDir": "./dist",
     "declaration": true
   }
 }

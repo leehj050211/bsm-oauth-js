@@ -1,11 +1,20 @@
 {
-  "name": "bsm-oauth-js",
+  "name": "bsm-oauth",
   "version": "1.0.0",
   "description": "BSM Auth를 JavaScript에서 쉽게 사용할 수 있는 라이브러리",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/lib/index.js",
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
+    }
+  },
+  "type": "module",
+  "types": "dist/lib/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "npm run build:cjs & npm run build:esm",
+    "build:cjs": "tsc --p ./cjs/tsconfig.json",
+    "build:esm": "tsc --p ./esm/tsconfig.json"
   },
   "repository": {
     "type": "git",
