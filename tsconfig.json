@@ -3,7 +3,7 @@
     "**/*.ts"
   ],
   "compilerOptions": {
-    "target": "ES2022",
+    "target": "ES6",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -12,6 +12,6 @@
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "./dist",
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
   }
 }
