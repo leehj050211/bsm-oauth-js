@@ -1,7 +1,8 @@
-enum ErrorType {
+enum BsmOauthErrorType {
   AUTH_CODE_NOT_FOUND = 'AUTH_CODE_NOT_FOUND',
   TOKEN_NOT_FOUND = 'TOKEN_NOT_FOUND',
-  INVALID_CLIENT = 'INVALID_CLIENT'
+  INVALID_CLIENT = 'INVALID_CLIENT',
+  INVALID_USER_ROLE = 'INVALID_USER_ROLE'
 }
 
-export default ErrorType;
+export default BsmOauthErrorType;

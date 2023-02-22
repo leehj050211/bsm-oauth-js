@@ -1,6 +1,6 @@
-enum UserRole {
+enum BsmUserRole {
   STUDENT = 'STUDENT',
   TEACHER = 'TEACHER'
 }
 
-export default UserRole;
+export default BsmUserRole;

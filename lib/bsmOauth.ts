@@ -1,9 +1,9 @@
 import axios, { AxiosError } from 'axios';
 import BsmOauthError from './error.js';
 import ErrorType from './types/errorType.js';
-import { ResourceDto, TokenDto } from './types/oauthRawType.js';
-import { Student, StudentResource } from './types/student.js';
-import { Teacher, TeacherResource } from './types/teacher.js';
+import { RawBsmOAuthResource, RawBsmOAuthToken } from './types/rawOAuthType.js';
+import { BsmStudent, BsmStudentResource } from './types/student.js';
+import { BsmTeacher, BsmTeacherResource } from './types/teacher.js';
 import UserRole from './types/userRole.js';
 
 export default class BsmOauth {
@@ -24,7 +24,7 @@ export default class BsmOauth {
 
   public async getToken(authCode: string): Promise<string> {
     try {
-      return (await axios.post<TokenDto>(this.BSM_AUTH_TOKEN_URL, {
+      return (await axios.post<RawBsmOAuthToken>(this.BSM_AUTH_TOKEN_URL, {
         ...this.bsmAuthPayload,
         authCode
       })).data.token;
@@ -40,18 +40,18 @@ export default class BsmOauth {
     }
   }
 
-  public async getResource(token: string): Promise<StudentResource | TeacherResource> {
+  public async getResource(token: string): Promise<BsmStudentResource | BsmTeacherResource> {
     try {
-      const resource = (await axios.post<{ user: ResourceDto }>(this.BSM_AUTH_RESOURCE_URL, {
+      const resource = (await axios.post<{ user: RawBsmOAuthResource }>(this.BSM_AUTH_RESOURCE_URL, {
         ...this.bsmAuthPayload,
         token
       })).data.user;
-      return this.convertResource(resource);
+      return this.toResource(resource);
     } catch (error) {
       if (error instanceof AxiosError) {
         switch (error.response?.status) {
           case 400: throw new BsmOauthError(ErrorType.INVALID_CLIENT, 'BSM OAuth 클라이언트 정보가 잘못되었습니다');
-          case 404: throw new BsmOauthError(ErrorType.TOKEN_NOT_FOUND, 'BSM OAuth 토큰를 찾을 수 없습니다');
+          case 404: throw new BsmOauthError(ErrorType.TOKEN_NOT_FOUND, 'BSM OAuth 토큰을 찾을 수 없습니다');
           default: throw error;
         }
       }
@@ -59,29 +59,33 @@ export default class BsmOauth {
     }
   }
 
-  private convertResource(resource: ResourceDto): StudentResource | TeacherResource {
-    const { code: userCode, role, nickname, email } = resource;
+  private toResource(resource: RawBsmOAuthResource): BsmStudentResource | BsmTeacherResource {
+    const { code: userCode, role, nickname, email, profileUrl } = resource;
     const commonResource = {
       userCode,
       nickname,
-      email
+      email,
+      profileUrl
     };
 
-    switch (role) {
-      case UserRole.STUDENT: return {
+    if (role === UserRole.STUDENT) {
+      return {
         ...commonResource,
         role,
-        student: this.convertStudent(resource)
-      }
-      case UserRole.TEACHER: return {
-        ...commonResource,
-        role,
-        teacher: this.convertTeacher(resource)
+        student: this.toStudent(resource)
       }
     }
+    if (role === UserRole.TEACHER) {
+      return {
+        ...commonResource,
+        role,
+        teacher: this.toTeacher(resource)
+      }
+    }
+    throw new BsmOauthError(ErrorType.INVALID_USER_ROLE);
   }
 
-  private convertStudent(resource: ResourceDto): Student {
+  private toStudent(resource: RawBsmOAuthResource): BsmStudent {
     const { name, enrolledAt, grade, classNo, studentNo } = resource;
 
     return {
@@ -93,8 +97,9 @@ export default class BsmOauth {
     };
   }
 
-  private convertTeacher(resource: ResourceDto): Teacher {
+  private toTeacher(resource: RawBsmOAuthResource): BsmTeacher {
     const { name } = resource;
+
     return {
       name
     }

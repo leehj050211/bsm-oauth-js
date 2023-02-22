@@ -1,7 +1,7 @@
 import CommonResource from "./commonResource.js";
 import UserRole from "./userRole.js";
 
-export interface Student {
+export interface BsmStudent {
   readonly name: string;
   readonly enrolledAt: number;
   readonly grade: number;
@@ -9,7 +9,7 @@ export interface Student {
   readonly studentNo: number;
 }
 
-export interface StudentResource extends CommonResource {
+export interface BsmStudentResource extends CommonResource {
   readonly role: UserRole.STUDENT;
-  readonly student: Student;
+  readonly student: BsmStudent;
 }

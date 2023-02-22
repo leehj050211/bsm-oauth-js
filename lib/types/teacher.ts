@@ -1,11 +1,11 @@
 import CommonResource from "./commonResource.js";
 import UserRole from "./userRole.js";
 
-export interface Teacher {
+export interface BsmTeacher {
   readonly name: string;
 }
 
-export interface TeacherResource extends CommonResource {
+export interface BsmTeacherResource extends CommonResource {
   readonly role: UserRole.TEACHER;
-  readonly teacher: Teacher;
+  readonly teacher: BsmTeacher;
 }
