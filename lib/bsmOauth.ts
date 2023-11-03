@@ -5,6 +5,7 @@ import { RawBsmOAuthResource, RawBsmOAuthToken } from "./types/rawOAuthType.js";
 import { BsmStudent, BsmStudentResource } from "./types/student.js";
 import { BsmTeacher, BsmTeacherResource } from "./types/teacher.js";
 import UserRole from "./types/userRole.js";
+import handleHttpError from "./utils/handleHttpError.js";
 
 export default class BsmOauth {
   constructor(clientId: string, clientSecret: string) {
@@ -33,20 +34,7 @@ export default class BsmOauth {
       ).data.token;
     } catch (error) {
       if (isAxiosError(error)) {
-        switch (error.response?.status) {
-          case 400:
-            throw new BsmOauthError(
-              ErrorType.INVALID_CLIENT,
-              "BSM OAuth 클라이언트 정보가 잘못되었습니다"
-            );
-          case 404:
-            throw new BsmOauthError(
-              ErrorType.AUTH_CODE_NOT_FOUND,
-              "BSM OAuth 인증 코드를 찾을 수 없습니다"
-            );
-          default:
-            throw error;
-        }
+        handleHttpError(error);
       }
       throw error;
     }
@@ -68,20 +56,7 @@ export default class BsmOauth {
       return this.toResource(resource);
     } catch (error) {
       if (isAxiosError(error)) {
-        switch (error.response?.status) {
-          case 400:
-            throw new BsmOauthError(
-              ErrorType.INVALID_CLIENT,
-              "BSM OAuth 클라이언트 정보가 잘못되었습니다"
-            );
-          case 404:
-            throw new BsmOauthError(
-              ErrorType.TOKEN_NOT_FOUND,
-              "BSM OAuth 토큰을 찾을 수 없습니다"
-            );
-          default:
-            throw error;
-        }
+        handleHttpError(error);
       }
       throw error;
     }
