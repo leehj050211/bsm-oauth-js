@@ -116,7 +116,12 @@ export default class BsmOauth {
   }
 
   private toStudent(resource: RawBsmOAuthResource): BsmStudent {
+    let isGraduate = false;
     const { name, enrolledAt, grade, classNo, studentNo } = resource;
+
+    if (grade === 0 && classNo === 0 && studentNo === 0) {
+      isGraduate = true;
+    }
 
     return {
       name,
@@ -124,6 +129,7 @@ export default class BsmOauth {
       grade,
       classNo,
       studentNo,
+      isGraduate,
     };
   }
 
