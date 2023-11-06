@@ -6,11 +6,4 @@ import { BsmStudentResource } from './lib/types/student.js';
 import { BsmTeacherResource } from './lib/types/teacher.js';
 
 export default BsmOauth;
-export {
-  BsmOauth,
-  BsmOauthError,
-  BsmOauthErrorType,
-  BsmUserRole,
-  BsmStudentResource,
-  BsmTeacherResource
-}
+export { BsmOauth, BsmOauthError, BsmOauthErrorType, BsmUserRole, BsmStudentResource, BsmTeacherResource };
