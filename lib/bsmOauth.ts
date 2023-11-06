@@ -20,6 +20,7 @@ export default class BsmOauth {
   };
   private readonly BSM_AUTH_TOKEN_URL: string = 'https://auth.bssm.kro.kr/api/oauth/token';
   private readonly BSM_AUTH_RESOURCE_URL: string = 'https://auth.bssm.kro.kr/api/oauth/resource';
+  private readonly CARDINAL_BASE_YEAR: number = 2020;
 
   public async getToken(authCode: string): Promise<string> {
     try {
@@ -84,7 +85,7 @@ export default class BsmOauth {
   private toStudent(resource: RawBsmOAuthResource): BsmStudent {
     const { name, enrolledAt, grade, classNo, studentNo } = resource;
     const isGraduate = !grade && !classNo && !studentNo;
-    const cardinal = enrolledAt - 2020;
+    const cardinal = enrolledAt ? enrolledAt - this.CARDINAL_BASE_YEAR : -1;
 
     return {
       name,
