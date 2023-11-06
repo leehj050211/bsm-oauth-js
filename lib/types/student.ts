@@ -8,7 +8,7 @@ export interface BsmStudent {
   readonly classNo: number;
   readonly studentNo: number;
   readonly isGraduate: boolean;
-  readonly cardinal: number;
+  readonly cardinal?: number;
 }
 
 export interface BsmStudentResource extends CommonResource {

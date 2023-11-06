@@ -85,7 +85,7 @@ export default class BsmOauth {
   private toStudent(resource: RawBsmOAuthResource): BsmStudent {
     const { name, enrolledAt, grade, classNo, studentNo } = resource;
     const isGraduate = !grade && !classNo && !studentNo;
-    const cardinal = enrolledAt ? enrolledAt - this.CARDINAL_BASE_YEAR : -1;
+    const cardinal = enrolledAt && enrolledAt - this.CARDINAL_BASE_YEAR;
 
     return {
       name,
