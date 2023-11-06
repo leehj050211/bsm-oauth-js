@@ -1,7 +1,9 @@
 # BSM OAuth JS
+
 [BSM Auth](https://github.com/BSSM-BSM/BSM-Auth-Backend-V1)의 OAuth기능을 JS에서 사용하기 쉽게 만들어주는 라이브러리입니다.
 
 ## 설치
+
 ```bash
 $ npm install bsm-oauth
 ```
@@ -9,8 +11,15 @@ $ npm install bsm-oauth
 ## 사용하기
 
 ### TypeScript
+
 ```typescript
-import BsmOauth, { BsmOauthError, BsmOauthErrorType, BsmUserRole, BsmStudentResource, BsmTeacherResource } from "bsm-oauth";
+import BsmOauth, {
+  BsmOauthError,
+  BsmOauthErrorType,
+  BsmUserRole,
+  BsmStudentResource,
+  BsmTeacherResource
+} from 'bsm-oauth';
 
 // BSM OAuth 객체 초기화
 const bsmOauth = new BsmOauth(BSM_AUTH_CLIENT_ID, BSM_AUTH_CLIENT_SECRET);
@@ -38,9 +47,18 @@ try {
   }
 }
 ```
+
 ### JavaScript
+
 ```typescript
-const { BsmOauth, BsmOauthError, BsmOauthErrorType, BsmUserRole, BsmStudentResource, BsmTeacherResource } = require('bsm-oauth');
+const {
+  BsmOauth,
+  BsmOauthError,
+  BsmOauthErrorType,
+  BsmUserRole,
+  BsmStudentResource,
+  BsmTeacherResource
+} = require('bsm-oauth');
 
 const bsmOauth = new BsmOauth(BSM_AUTH_CLIENT_ID, BSM_AUTH_CLIENT_SECRET);
 
@@ -69,8 +87,11 @@ const bsmOauth = new BsmOauth(BSM_AUTH_CLIENT_ID, BSM_AUTH_CLIENT_SECRET);
   }
 })();
 ```
+
 ### 학생, 선생님계정 구분하기
+
 role 속성으로 구분할 수 있습니다.
+
 ```javascript
 // TypeScript에서는 role로 타입을 추론해야 학생 및 선생님 정보에 접근 가능합니다.
 if (resource.role === BsmUserRole.STUDENT) {

@@ -1,4 +1,4 @@
-import UserRole from "./userRole.js";
+import UserRole from './userRole.js';
 
 export interface RawBsmOAuthToken {
   readonly token: string;

@@ -1,5 +1,5 @@
-import CommonResource from "./commonResource.js";
-import UserRole from "./userRole.js";
+import CommonResource from './commonResource.js';
+import UserRole from './userRole.js';
 
 export interface BsmTeacher {
   readonly name: string;

@@ -1,5 +1,5 @@
-import CommonResource from "./commonResource.js";
-import UserRole from "./userRole.js";
+import CommonResource from './commonResource.js';
+import UserRole from './userRole.js';
 
 export interface BsmStudent {
   readonly name: string;
@@ -7,6 +7,7 @@ export interface BsmStudent {
   readonly grade: number;
   readonly classNo: number;
   readonly studentNo: number;
+  readonly isGraduate: boolean;
 }
 
 export interface BsmStudentResource extends CommonResource {
