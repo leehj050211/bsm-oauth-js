@@ -87,15 +87,7 @@ export default class BsmOauth {
     const isGraduate = !grade && !classNo && !studentNo;
     const cardinal = enrolledAt && enrolledAt - this.CARDINAL_BASE_YEAR;
 
-    return {
-      name,
-      enrolledAt,
-      grade,
-      classNo,
-      studentNo,
-      isGraduate,
-      cardinal
-    };
+    return { name, enrolledAt, grade, classNo, studentNo, isGraduate, cardinal };
   }
 
   private toTeacher(resource: RawBsmOAuthResource): BsmTeacher {
