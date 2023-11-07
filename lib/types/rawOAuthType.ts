@@ -16,5 +16,5 @@ export interface RawBsmOAuthResource {
   readonly name: string;
   readonly email: string;
   readonly role: UserRole;
-  readonly profileUrl: string;
+  readonly profileUrl?: string;
 }

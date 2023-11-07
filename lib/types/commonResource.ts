@@ -5,5 +5,5 @@ export default interface BsmOauthCommonResource {
   readonly role: UserRole;
   readonly nickname: string;
   readonly email: string;
-  readonly profileUrl: string;
+  readonly profileUrl?: string;
 }
