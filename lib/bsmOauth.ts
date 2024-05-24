@@ -17,8 +17,8 @@ export default class BsmOauth {
     clientId: string;
     clientSecret: string;
   };
-  private readonly BSM_AUTH_TOKEN_URL: string = 'https://auth.bssm.kro.kr/api/oauth/token';
-  private readonly BSM_AUTH_RESOURCE_URL: string = 'https://auth.bssm.kro.kr/api/oauth/resource';
+  private readonly BSM_AUTH_TOKEN_URL: string = 'https://api-auth.bssm.app/api/oauth/token';
+  private readonly BSM_AUTH_RESOURCE_URL: string = 'https://api-auth.bssm.app/api/oauth/resource';
 
   public async getToken(authCode: string): Promise<string> {
     try {
