@@ -5,7 +5,7 @@ export interface RawBsmOAuthToken {
 }
 
 export interface RawBsmOAuthResource {
-  readonly code: number;
+  readonly id: number;
   readonly nickname: string;
   readonly isGraduate: boolean;
   readonly enrolledAt: number;

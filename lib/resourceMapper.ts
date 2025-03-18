@@ -6,8 +6,8 @@ import { BsmTeacher, BsmTeacherResource } from './types/teacher.js';
 import UserRole from './types/userRole.js';
 
 const toResource = (resource: RawBsmOAuthResource): BsmStudentResource | BsmTeacherResource => {
-  const { code: userCode, role, nickname, email, profileUrl } = resource;
-  const commonResource = { userCode, nickname, email, profileUrl };
+  const { id, role, nickname, email, profileUrl } = resource;
+  const commonResource = { userCode: id, id, nickname, email, profileUrl };
 
   if (role === UserRole.STUDENT) {
     return { ...commonResource, role, student: toStudent(resource) };
