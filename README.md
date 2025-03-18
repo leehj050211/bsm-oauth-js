@@ -1,6 +1,6 @@
 # BSM OAuth JS
 
-[BSM Auth](https://github.com/BSSM-BSM/BSM-Auth-Backend-V1)의 OAuth기능을 JS에서 사용하기 쉽게 만들어주는 라이브러리입니다.
+[BSM Auth](https://github.com/BSSM-BSM/BSM-Auth-Backend-V1)의 OAuth기능을 JavaScript에서 사용하기 쉽게 만들어주는 라이브러리입니다.
 
 ## 설치
 
@@ -52,7 +52,7 @@ const bsmOauth = new BsmOauth(BSM_AUTH_CLIENT_ID, BSM_AUTH_CLIENT_SECRET);
 const token = await bsmOauth.getToken(authCode);
 
 // 토큰으로 유저 정보 가져오기
-return await bsmOauth.getResource(token);
+const resource = await bsmOauth.getResource(token);
 
 // 가져온 유저 정보 확인
 console.log(resource);
